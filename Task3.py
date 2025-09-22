@@ -10,11 +10,12 @@ cables_lenght_2 = [1,9,5,4,7,3,8,2,6]
 def order_by_heap (values):
     minimal_join = 0
     
-    while values:
-        heapq.heapify(values)
-        min_value = heapq.heappop(values)
-        minimal_join += min_value
-        print ("Беремо кабель довжиною:", min_value)
+    heapq.heapify(values)
+    while len(values) > 1:    
+        new_cable = heapq.heappop(values) + heapq.heappop(values)
+        minimal_join += new_cable 
+        print ("Беремо кабель довжиною:", new_cable)
+        heapq.heappush(values, new_cable)
     
     print("Мінімальне зʼєднання всіх кабелів:", minimal_join)
     
